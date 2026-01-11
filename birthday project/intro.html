@@ -1,0 +1,60 @@
+<html lang=eng>
+<head>
+<title>
+birthday wish
+</title>
+<meta charset="UTF-8" />
+</head>
+</html>
+<body style="background-color:skyblue">
+<br></br><br></br><br></br><br></br><br></br>
+<div style="
+  width:320px;
+  margin:60px auto;
+  padding:20px;
+  background:white;
+  border-radius:15px;
+  text-align:center;
+">
+
+  <p id="message" style="font-size:18px; font-weight:bold;">
+   It's your Special Day YeYee! 💖
+  </p>
+
+  <button id="btn" onclick="nextMessage()" style="
+    background:blue;
+    color:white;
+    padding:12px 30px;
+    border:none;
+    border-radius:50px;
+    font-weight:bold;
+    cursor:pointer;
+  ">
+    Next
+  
+</div><script>
+  let step = 0;
+
+  function nextMessage() {
+    const msg = document.getElementById("message");
+    const btn = document.getElementById("btn");
+
+    if (step === 0) {
+      msg.innerText = "Do you wanna see what I made??";
+      btn.innerText = "Yes";
+    }
+    else if (step === 1) {
+      msg.innerText = "Have a look at it, Meri Jan ❤️";
+      btn.innerText = "Let's Go!🎉";
+    }
+    else if (step === 2) {
+      
+      window.location.href = "new2.html";
+    }
+
+    
+    step++;
+  }
+</script>
+
+

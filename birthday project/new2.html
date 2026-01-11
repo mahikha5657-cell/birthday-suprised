@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  text-align:center;
+  font-family:Arial, sans-serif;
+  background:skyblue;
+  color:white;
+  transition:0.5s;
+}
+
+h1{ margin-top:30px; }
+
+#message{
+  font-size:20px;
+  font-weight:bold;
+  margin:20px;
+}
+
+button{
+  background:blue;
+  color:white;
+  padding:14px 35px;
+  border:none;
+  border-radius:40px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:25px;
+}
+
+/* LIGHTS */
+#lights span{
+  width:14px;
+  height:14px;
+  display:inline-block;
+  border-radius:50%;
+  margin:6px;
+  animation:blink 1s infinite;
+}
+@keyframes blink{
+  0%{opacity:1}
+  50%{opacity:0.3}
+  100%{opacity:1}
+}
+#lights{ display:none; }
+
+/* CAKE */
+#cake{
+  font-size:120px;
+  display:none;
+  margin-top:20px;
+}
+
+/* BALLOONS */
+#balloons{
+  display:none;
+  margin-top:30px;
+}
+.balloon{
+  font-size:40px;
+  margin:10px;
+}
+
+/* CARD */
+#cardSection{
+  display:none;
+  margin-top:50px;
+}
+
+.card-container{
+  perspective:1200px;
+}
+
+.card{
+  width:500px;
+  height:380px;
+  margin:auto;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 1s;
+}
+
+.card.open{
+  transform:rotateY(-180deg);
+}
+
+.card-front,
+.card-inside{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:15px;
+  padding:20px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.card-front{
+  background:linear-gradient(to right,#b71c1c,#e53935);
+  color:white;
+}
+
+.card-inside{
+  background:white;
+  color:black;
+  transform:rotateY(180deg);
+  line-height:1.6;
+}
+
+/* MEMORIES */
+#memories{
+  display:none;
+  margin-top:40px;
+}
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  max-width:900px;
+  margin:auto;
+}
+
+.gallery img{
+  width:220px;
+  height:160px;
+  margin:12px;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="heading"><font color = "white">Let's Celebrate 🎉</h1>
+<div id="message"><font color = "white">Click the button to decorate 💖</div>
+<button id="mainBtn" onclick="nextStep()">Let's decorate</button>
+
+<div id="lights">
+  <span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span>
+  <span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span><span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span>
+  <span style="background:red"></span>
+  <span style="background:yellow"></span> <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span>
+  <span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span><span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span>
+  <span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span><span style="background:red"></span>
+  <span style="background:yellow"></span>
+  <span style="background:blue"></span>
+  <span style="background:green"></span>
+  <span style="background:pink"></span>
+  <span style="background:cyan"></span>
+</div>
+
+<div id="cake">🎂</div>
+
+<div id="balloons">
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span><span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+  <span class="balloon">🎈</span>
+</div>
+
+<!-- CARD -->
+<div id="cardSection">
+  <h2 id="cardMsg" style="color:blue">❤️ A Special Message ❤️</h2>
+
+  <div class="card-container">
+    <div class="card" id="card">
+      <div class="card-front">Click the button 💌</div>
+      <div class="card-inside">
+            ❤️ Happy Birthday my Haris ❤️
+Haris…
+tum sirf mera future husband nahi,
+tum meri rooh ka sukoon ho 💞
+tum se baat na bhi ho
+toh bhi dil tumhein mehsoos karta rehta hai۔
+Aaj tum mujh se door ho،
+lekin meri har saans tumhare naam se judi hai۔
+Main Rukhsar ho kar bhi
+sirf tumhari hoon 🤍
+Tum meri duaon ka sab se khoobsurat lafz ho،
+meri tanhaiyon ka sahara
+aur meri zindagi ka sab se pyara khwab 🌙
+Allah kare tumhari zindagi
+meri mohabbat jaisi gehri
+aur meri wafaa jaisi hamesha rehne wali ho۔
+Woh din jaldi aaye
+jab main yeh birthday
+tumhari baahon mein manaun ❤️
+I love you more than words can say
+— Tumhari Rukhsar 💕
+      </div>
+    </div>
+  </div>
+
+  <button id="cardBtn" onclick="cardAction()">Open Card</button>
+</div>
+
+<!-- MEMORIES -->
+<div id="memories">
+  <h2>Our Beautiful Memories 💕</h2>
+  <!DOCTYPE html>
+<html>
+
+
+
+</html>
+
+  <div class="gallery">
+   <img src="memories/pic1.jpeg">
+    <img src="memories/pic2.jpg.jpeg">
+    <img src="memories/pic3.jpg (2).jpeg">
+    <img src="memories/pic4.jpg.jpeg">
+    <img src="memories/pic5.jpg.jpeg">
+    <img src="memories/pic6.jpg.jpeg">
+    <img src="memories/pic7.jpg.jpeg">
+    <img src="memories/pic8.jpg.jpeg">
+  </div>
+</div>
+
+<script>
+let step = 0;
+let cardStep = 0;
+
+function nextStep(){
+  const btn = document.getElementById("mainBtn");
+
+  if(step === 0){
+    document.body.style.background="black";
+    btn.innerText="Turn on lights";
+  }
+  else if(step === 1){
+    lights.style.display="block";
+    btn.innerText="Bring Cake";
+  }
+  else if(step === 2){
+    cake.style.display="block";
+    btn.innerText="fly Balloons";
+  }
+  else if(step === 3){
+    balloons.style.display="block";
+    btn.innerText="well I have a massege for you meri jan 💌";
+  }
+  else if(step === 4){
+    document.body.style.background="skyblue";
+    heading.style.display="none";
+    message.style.display="none";
+    mainBtn.style.display="none";
+    lights.style.display="none";
+    cake.style.display="none";
+    balloons.style.display="none";
+    cardSection.style.display="block";
+  }
+  step++;
+}
+
+function cardAction(){
+  const card = document.getElementById("card");
+  const btn = document.getElementById("cardBtn");
+  const msg = document.getElementById("cardMsg");
+
+  if(cardStep === 0){
+    card.classList.add("open");
+    msg.innerText = "Our Memories 💖";
+    btn.innerText = "See Memories";
+    cardStep++;
+  } else {
+    cardSection.style.display="none";
+    memories.style.display="block";
+  }
+}
+</script>
+
+</body>
+</html>
